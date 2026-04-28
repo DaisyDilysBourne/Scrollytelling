@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrollytelling Page</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .section {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .text {
+      width: 40%;
+      padding: 60px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: #f7f7f7;
+    }
+
+    .graphic {
+      width: 60%;
+      padding: 40px;
+    }
+
+    .step {
+      margin-bottom: 80px;
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+
+    .step.active {
+      opacity: 1;
+    }
+
+    .spacer {
+      height: 60vh;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="text">
+      <div class="step">Intro text BEFORE first chart — edit this.</div>
+      <div class="step">Scrolling text DURING chart 1 — edit this.</div>
+      <div class="step">More scrolling commentary for chart 1.</div>
+      <div class="step">Text AFTER chart 1 — transition to next.</div>
+    </div>
+
+    <div class="graphic">
+      <div class="spacer"></div>
+
+      <!-- CHART 1 -->
+      <div class="chart">
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28733279">
+          <script src="https://public.flourish.studio/resources/embed.js"></script>
+          <noscript>
+            <img src="https://public.flourish.studio/visualisation/28733279/thumbnail" width="100%" />
+          </noscript>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="text">
+      <div class="step">Intro text BEFORE chart 2.</div>
+      <div class="step">Scrolling insight for chart 2.</div>
+      <div class="step">More explanation while chart 2 is visible.</div>
+      <div class="step">Wrap-up text for chart 2.</div>
+    </div>
+
+    <div class="graphic">
+      <div class="spacer"></div>
+
+      <!-- CHART 2 -->
+      <div class="chart">
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28733434">
+          <script src="https://public.flourish.studio/resources/embed.js"></script>
+          <noscript>
+            <img src="https://public.flourish.studio/visualisation/28733434/thumbnail" width="100%" />
+          </noscript>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="text">
+      <div class="step">Intro text BEFORE chart 3.</div>
+      <div class="step">Scrolling commentary for chart 3.</div>
+      <div class="step">Key takeaway while chart is visible.</div>
+      <div class="step">Final conclusion text.</div>
+    </div>
+
+    <div class="graphic">
+      <div class="spacer"></div>
+
+      <!-- CHART 3 -->
+      <div class="chart">
+        <div class="flourish-embed flourish-chart" data-src="visualisation/28733449">
+          <script src="https://public.flourish.studio/resources/embed.js"></script>
+          <noscript>
+            <img src="https://public.flourish.studio/visualisation/28733449/thumbnail" width="100%" />
+          </noscript>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+    </div>
+  </div>
+
+  <script>
+    const steps = document.querySelectorAll('.step');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          steps.forEach(step => step.classList.remove('active'));
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    steps.forEach(step => observer.observe(step));
+  </script>
+
+</body>
+</html>
